@@ -1,51 +1,71 @@
 'use strict';
+// functions and vars needed :
+
+//Random Num gen function :
+const randomNumGen = function () {
+  return Math.floor(Math.random() * 19) + 1;
+};
+//-------------------------------------------------------------------------
+
+// Again button fun
+document.querySelector('.again').addEventListener('click', function () {
+  score = 20;
+  document.querySelector('body').style.backgroundColor = '#222';
+  displayMessage('.label-score', `💯 Score: ${score}`);
+  randomNum = randomNumGen();
+  document.querySelector('.number').style.width = '15rem';
+  displayMessage('.number', '?');
+  displayMessage('.message', 'Start guessing ...');
+  document.querySelector('.guess').value = '';
+  console.log(randomNum);
+});
+//--------------------------------------------------------------------------
+
+//Text content change fun
+const displayMessage = function (target, message) {
+  document.querySelector(target).textContent = message;
+};
+//--------------------------------------------------------------------------
+
+//Useful vars
 let score = 20;
 let highScore = 0;
-let randomNum = Math.floor(Math.random() * 19) + 1;
+let randomNum = randomNumGen();
+
+//--------------------------------------------------------------------------
+
+//for cheating purposes
 console.log(randomNum);
 console.log(`You fucking cheater close the console and play fairly`);
-// let message = document.querySelector('.message').textContent;
-// let scoreText = document.querySelector('.label-score').textContent;
-// let highScoreText = document.querySelector('.label-highscore').textContent;
+
+// -------------------------------------------------------------------------
+
+// Check Answer Event listener
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
 
   if (!guess) {
-    document.querySelector('.message').textContent =
-      'Please enter a valid number';
-  } else if (guess != randomNum && score === 1) {
-    document.querySelector('.message').textContent = 'Congrats,You Lost 🦍';
+    displayMessage('.message', 'Please enter a valid number');
+  } else if (guess != randomNum) {
+    displayMessage(
+      '.message',
+      score <= 1
+        ? 'Congrats,You Lost 🦍'
+        : guess > randomNum
+        ? '📈 Too high'
+        : `📉 Too low`
+    );
     score--;
-    document.querySelector('.label-score').textContent = `💯 Score: ${score}`;
-  } else if (guess > randomNum) {
-    document.querySelector('.message').textContent = '📈 Too high';
-    score--;
-    document.querySelector('.label-score').textContent = `💯 Score: ${score}`;
-  } else if (guess < randomNum) {
-    document.querySelector('.message').textContent = '📉 Too low';
-    score--;
-    document.querySelector('.label-score').textContent = `💯 Score: ${score}`;
+    displayMessage('.label-score', `💯 Score: ${score}`);
   } else {
-    document.querySelector('.message').textContent = 'YOU GOT IT WOHOOOOO!';
-    document.querySelector('.number').textContent = randomNum;
+    displayMessage('.message', 'YOU GOT IT WOHOOOOO!');
+    displayMessage('.number', randomNum);
     document.querySelector('body').style.backgroundColor = '#60b347';
     document.querySelector('.number').style.width = '30rem';
     if (score > highScore) {
       highScore = score;
-      document.querySelector(
-        '.label-highscore'
-      ).textContent = `🥇 Highscore: ${score}`;
+      displayMessage('.label-highscore', `🥇 Highscore: ${score}`);
     }
   }
 });
-document.querySelector('.again').addEventListener('click', function () {
-  score = 20;
-  document.querySelector('body').style.backgroundColor = '#222';
-  document.querySelector('.label-score').textContent = `💯 Score: ${score}`;
-  randomNum = Math.floor(Math.random() * 19) + 1;
-  document.querySelector('.number').style.width = '15rem';
-  document.querySelector('.number').textContent = '?';
-  document.querySelector('.message').textContent = 'Start guessing ...';
-  document.querySelector('.guess').value = '';
-  console.log(randomNum);
-});
+//--------------------------------------------------------------------------
