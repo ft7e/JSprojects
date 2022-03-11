@@ -27,29 +27,3 @@ document.addEventListener('keydown', function (e) {
     overlay.classList.add('hidden');
   }
 });
-
-btnHold.addEventListener('click', function () {
-  if (turn === 1) {
-    PlayerOneFinalScore += playerOneScore;
-    finalScore[0].textContent = PlayerOneFinalScore;
-    playerOneScore = 0;
-    currentScore1.textContent = playerOneScore;
-    if (PlayerOneFinalScore >= 100) {
-      playerOneActive.classList.add('player--winner');
-      Player1Name.textContent = 'WINNER!';
-    } else {
-      switchFromPlayer(1);
-    }
-  } else {
-    PlayerTwoFinalScore += playerTwoScore;
-    finalScore[1].textContent = PlayerTwoFinalScore;
-    playerTwoScore = 0;
-    currentScore1.textContent = playerTwoScore;
-    if (PlayerTwoFinalScore >= 100) {
-      playerTwoActive.classList.add('player--winner');
-      player2Name.textContent = 'WINNER!';
-    } else {
-      switchFromPlayer(2);
-    }
-  }
-});
