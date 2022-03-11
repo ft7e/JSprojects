@@ -105,3 +105,21 @@ const checkWinner = function () {
 btnRollDice.addEventListener('click', rollTheDice);
 
 //----------------------------------------------------------------------------
+
+//New game Button Event Listerner
+btnNewGame.addEventListener('click', function () {
+  playerOneScore = 0;
+  playerTwoScore = 0;
+  PlayerOneFinalScore = 0;
+  PlayerTwoFinalScore = 0;
+  currentScore1.textContent = playerOneScore;
+  currentScore2.textContent = playerTwoScore;
+  player2Name.textContent = 'PLAYER 2';
+  Player1Name.textContent = 'PLAYER 1';
+  finalScore[1].textContent = PlayerOneFinalScore;
+  finalScore[0].textContent = PlayerTwoFinalScore;
+  playerOneActive.classList.add('player--active');
+  playerOneActive.classList.remove('player--winner');
+  playerTwoActive.classList.remove('player--active', 'player--winner');
+  diceImg.classList.add('hide');
+});
