@@ -122,4 +122,5 @@ btnNewGame.addEventListener('click', function () {
   playerOneActive.classList.remove('player--winner');
   playerTwoActive.classList.remove('player--active', 'player--winner');
   diceImg.classList.add('hide');
+  turn = 1;
 });
