@@ -91,10 +91,10 @@ btnHold.addEventListener('click', function () {
 
 //Check Winner fun
 const checkWinner = function () {
-  if (PlayerOneFinalScore >= 20) {
+  if (PlayerOneFinalScore >= 100) {
     Player1Name.textContent = 'WINNER!';
     playerOneActive.classList.add('player--winner');
-  } else if (PlayerTwoFinalScore >= 20) {
+  } else if (PlayerTwoFinalScore >= 100) {
     player2Name.textContent = 'WINNER!';
     playerTwoActive.classList.add('player--winner');
   }
